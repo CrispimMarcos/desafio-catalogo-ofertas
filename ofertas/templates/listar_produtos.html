@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Produtos</title>
+</head>
+<body>
+    <h1>Produtos</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Imagem</th>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Parcelamento</th>
+                <th>Link</th>
+                <th>Preço Sem Desconto</th>
+                <th>Percentual Desconto</th>
+                <th>Tipo de Entrega</th>
+                <th>Frete Grátis</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for produto in produtos %}
+            <tr>
+                <td>
+                    {% if produto.imagem %}
+                    <img src="{{ produto.imagem }}" alt="{{ produto.nome }}" width="100">
+                    {% else %}
+                    <img src="default_image.jpg" alt="Imagem Não Disponível" width="100">
+                    {% endif %}
+                </td>
+                <td>{{ produto.nome }}</td>
+                <td>{{ produto.preco }}</td>
+                <td>{{ produto.parcelamento }}</td>
+                <td><a href="{{ produto.link }}">Link</a></td>
+                <td>{{ produto.preco_sem_desconto }}</td>
+                <td>{{ produto.percentual_desconto }}</td>
+                <td>{{ produto.tipo_entrega }}</td>
+                <td>{{ produto.frete_gratis }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h2>Produto com Maior Preço: {{ maior_preco.nome }} - {{ maior_preco.preco }}</h2>
+    <h2>Produto com Menor Preço: {{ menor_preco.nome }} - {{ menor_preco.preco }}</h2>
+    <h2>Produto com Maior Desconto: {{ maior_desconto.nome }} - {{ maior_desconto.percentual_desconto }}%</h2>
+</body>
+</html>
